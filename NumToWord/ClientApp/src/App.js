@@ -36,7 +36,7 @@ function App() {
                 setWords('');
             }
         } else {
-            setError('Please enter a valid number. The maximum dollar is 999 999 999 and maximum cents is 99. The separator is comma. For example, 123456789,99 is a valid number.');
+            setError('Please enter a valid number. The maximum dollar is 999 999 999 and maximum cents is 99. The separator is comma. For example, 123 456 789,99 is a valid number.');
             setWords('');
         }
         
