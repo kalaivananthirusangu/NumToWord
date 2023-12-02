@@ -3,7 +3,7 @@ import axios from "axios";
 import "./custom.css"
 function App() {
     // State variables
-    const [number, setNumber] = useState(0);
+    const [number, setNumber] = useState("0");
     const [words, setWords] = useState("");
     const [error, setError] = useState('');
 
@@ -19,24 +19,29 @@ function App() {
         const value = event.target.querySelector('.input').value;
         // Define the regular expression for a valid number with comma and limit the integer part to 99999999
         const regex = /^[0-9]{1,3}( ?[0-9]{3})*(,[0-9]{1,2})?$/;
+        if (value) {
+            if (regex.test(value)) {
+                setError('');
+                try {
+                    const num = parseFloat(number.replace(/,/g, '.').replace(/ /g, ''));
+                    const response = await axios.get(
+                        `http://localhost:5177/converter?number=${num}`
+                    );
 
-        if (!value || regex.test(value)) {
-            setError('');
-            try {
-                const num = parseFloat(number.replace(/,/g, '.').replace(/ /g,''));
-                const response = await axios.get(
-                    `http://localhost:5177/converter?number=${num}`
-                );
-
-                // Set the output words to the response data
-                setWords(response.data);
-            } catch (error) {
-                console.error(error);
-                setError(error);
+                    // Set the output words to the response data
+                    setWords(response.data);
+                } catch (error) {
+                    console.error(error);
+                    setError(error);
+                    setWords('');
+                }
+            } else {
+                setError('Please enter a valid number. The maximum dollar is 999 999 999 and maximum cents is 99. The separator is comma. For example, 123 456 789,99 is a valid number.');
                 setWords('');
             }
-        } else {
-            setError('Please enter a valid number. The maximum dollar is 999 999 999 and maximum cents is 99. The separator is comma. For example, 123 456 789,99 is a valid number.');
+        }
+        else {
+            setError('Please enter a number to convert.');
             setWords('');
         }
         
@@ -56,6 +61,7 @@ function App() {
                 <p className="result">{words}</p>
                 <p className="error">{error}</p>
             </div>
+            <p className="footer">Kalaivanan Thirusangu</p>
         </div>
     );
 }
