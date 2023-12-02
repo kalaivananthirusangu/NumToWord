@@ -1,6 +1,6 @@
 # Number to Words Converter
 
-This is a React with ASP.NET Core project that converts a currency value in numbers to words. For example, if you enter 123456789,99, the app will output "one hundred twenty-three million four hundred fifty-six thousand seven hundred eighty-nine dollars and ninety-nine cents".
+This is a React with ASP.NET Core project that converts a currency value in numbers to words. For example, if you enter 123 456 789,99, the app will output "one hundred twenty three million four hundred fifty six thousand seven hundred eighty nine dollars and ninety nine cents".
 
 ## Features
 
