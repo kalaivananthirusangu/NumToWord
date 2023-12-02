@@ -26,7 +26,7 @@ git clone https://github.com/kalaivananthirusangu/NumToWord.git
 
 The project can be run by either opening the NumToWord.sln in Visual Studio or using command line.
 
-# Command Line Method
+### Command Line Method
 - Open a Terminal and navigate to the folder ClientApp folder inside the project folder. Run the following command to instll the dependencies:
 
   npm install
